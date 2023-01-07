@@ -9,7 +9,9 @@ to help companies expand their business.
 
 -process orders
 
-- send reminders for pickups
+-send reminders for pickups
+
+sql alchemy/ react/ flask
 
 Source :
 https://www.twilio.com/docs/whatsapp/tutorial/send-and-receive-media-messages-whatsapp-python
