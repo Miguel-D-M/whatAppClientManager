@@ -5,6 +5,11 @@ from model.order_line import Order_Line
 from model.order import Order
 
 
+def validate_order(customer_id,order_data):
+    order = create_order(customer_id)
+    for order_line in order_data:
+        add_order_line(order,order_line.item,order_line.quantity)
+    db.session.commit()
 def get_all_orders() -> list[Order]:
     return db.session.execute(db.select(Order))
 

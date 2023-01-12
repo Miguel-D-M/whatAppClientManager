@@ -1,5 +1,7 @@
 import nltk
 
+from services.order_service import validate_order
+
 nltk.download('popular')
 from nltk.stem import WordNetLemmatizer
 
@@ -66,19 +68,15 @@ def getResponse(ints, intents_json):
             break
     return result
 
-def validate_order(msg):
-    db.session.add(item)
-    db.session.commit()
-    for item_data in msg:
-        item = Item(
-            description=item_data["description"],
-            quantity=item_data["quantity"],
-            photo=item_data["photo"])
-        db.session.add(item)
-    db.session.commit()
+
+def extract_order_data(msg):
+    pass
 
 
-def chatbot_response(msg):
+def chatbot_response(msg,sender):
     ints = predict_class(msg, model)
+    if(ints[0]['intent'] == 'ordering'):
+        order_data = extract_order_data(msg)
+        validate_order(sender,order_data)
     res = getResponse(ints, intents)
     return res
